@@ -1,25 +1,31 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Board : MonoBehaviour {
+public class BoardAdvanced : MonoBehaviour {
 
     public TicTacToe match;
 	public bool Minimax, MinimaxAB, Negamax, NegamaxAB;
 	public static int lastInteraction;
 	public static string winner = "";
+    public static AIDifficulty difficulty = AIDifficulty.EASY;
+    public GameObject resultPanel, difficultyPanel;
+    public Text resultText;
+
+    public MarkController _markC;
 	
 	#region Singleton Design Pattern
-    private static Board instance = null;
-    public static Board Instance
+    private static BoardAdvanced instance = null;
+    public static BoardAdvanced Instance
     {
         get
         {
             if (instance == null)
             {
-                instance = (Board)FindObjectOfType(typeof(Board));
+                instance = (BoardAdvanced)FindObjectOfType(typeof(BoardAdvanced));
                 if (instance == null)
-                    instance = (new GameObject("TicTacToe")).AddComponent<Board>();
+                    instance = (new GameObject("TicTacToe")).AddComponent<BoardAdvanced>();
             }
             return instance;
         }
@@ -29,32 +35,56 @@ public class Board : MonoBehaviour {
     void Awake()
     {
         match = new TicTacToe();
+        MinimaxAB = true;
+        _markC = GetComponentInChildren<MarkController>();
     }
-	
-	void OnGUI()
+
+    private void Start()
+    {
+        GameManager.Instance.PlayBgm("BGM");
+    }
+
+    void OnGUI()
 	{
-		if(GUI.Button(new Rect(10, 10, 100, 30), "Restart"))
-		{
-			match.Restart();
-			lastInteraction = 0;
-			winner = "";
-		}
+		//if(GUI.Button(new Rect(10, 10, 100, 30), "Restart"))
+		//{
+		//	match.Restart();
+		//	lastInteraction = 0;
+		//	winner = "";
+		//}
 		
-		if(lastInteraction > 0)
-		{
-			GUI.Label(new Rect(120, 10, 200, 30), lastInteraction + " interactions.");
-		}
+		//if(lastInteraction > 0)
+		//{
+		//	GUI.Label(new Rect(120, 10, 200, 30), lastInteraction + " interactions.");
+		//}
+
 		if(winner != "")
 		{
-			GUI.Box(new Rect(Screen.width/2 - 100, Screen.height/2 - 15, 200, 30), winner);
-		}
-		Minimax = GUI.Toggle(new Rect(10, 50, 100, 20), !(MinimaxAB || Negamax || NegamaxAB), " Minimax");
-        MinimaxAB = GUI.Toggle(new Rect(10, 70, 300, 20), !(Minimax || Negamax || NegamaxAB), " Minimax - Alpha–beta pruning");
+            WinGame();
+
+        }
+		//Minimax = GUI.Toggle(new Rect(10, 50, 100, 20), !(MinimaxAB || Negamax || NegamaxAB), " Minimax");
+        //MinimaxAB = GUI.Toggle(new Rect(10, 70, 300, 20), !(Minimax || Negamax || NegamaxAB), " Minimax - Alpha–beta pruning");
 
 		// Not Implemented Yet
         //Negamax = GUI.Toggle(new Rect(10, 90, 100, 20), !(MinimaxAB || Minimax || NegamaxAB), " Negamax");
         //NegamaxAB = GUI.Toggle(new Rect(10, 110, 300, 20), !(MinimaxAB || Negamax || Minimax), " Negamax - Alpha–beta pruning");
 	}
+
+    private void WinGame()
+    {
+        resultPanel.SetActive(true);
+        resultText.text = winner;
+    }
+    
+    public void RestartGame()
+    {
+        resultPanel.SetActive(false);
+        difficultyPanel.SetActive(true);
+        match.Restart();
+        lastInteraction = 0;
+        winner = "";
+    }
 }
     
 public class TicTacToe 
@@ -92,16 +122,16 @@ public class TicTacToe
     public bool MarkTable(string mark, int x, int y) 
     { 
         if( x >= 3 || y >= 3 || x < 0 || y < 0) 
-        { 
+        {
             Debug.Log("Invalid path"); 
             return false; 
         } 
         if( board[x,y] != " ") 
         { 
-            Debug.Log("Path already filled"); 
+            Debug.Log("Path already filled");
             return false; 
         } 
-        board[x,y] = mark; 
+        board[x,y] = mark;
         return true; 
     } 
 
@@ -175,8 +205,8 @@ public class TicTacToe
             for (int i = 0; i < movements.Count; i++)
             {
                 TicTacToe movement = tree.Match.Clone();
-                if (movement.nextPlayer % 2 == 0) movement.MarkTable("O", (int)movements[i].x, (int)movements[i].y); 
-                else movement.MarkTable("X", (int)movements[i].x, (int)movements[i].y);
+                if (movement.nextPlayer % 2 == 0) movement.MarkTable("X", (int)movements[i].x, (int)movements[i].y); 
+                else movement.MarkTable("O", (int)movements[i].x, (int)movements[i].y);
 				
                 movement.nextPlayer++;
                 movement.CheckState();
