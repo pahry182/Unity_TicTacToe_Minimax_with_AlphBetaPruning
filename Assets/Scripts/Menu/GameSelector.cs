@@ -6,6 +6,7 @@ public class GameSelector : MonoBehaviour
 {
     [SerializeField] string gameTittle;
     [SerializeField] string sceneName;
+    [SerializeField] string gameDescription;
     [SerializeField] Sprite gameScreenshot;
     [SerializeField] Sprite gameScreenshot2;
     
@@ -20,8 +21,18 @@ public class GameSelector : MonoBehaviour
         return sceneName;
     }
 
-    public Sprite GetScreemshot()
+    public string GetDescription()
+    {
+        return gameDescription;
+    }
+
+    public Sprite GetScreenshot()
     {
         return gameScreenshot;
+    }
+
+    public Sprite GetScreenshot2()
+    {
+        return gameScreenshot2;
     }
 }
