@@ -12,6 +12,8 @@ public class LoginRegisterHandler: MonoBehaviour
     public InputField inputUsername;
     public InputField inputPassword;
     public Text warningMessage;
+    [SerializeField]
+    private readonly string URL = "https://cp-api-unej.herokuapp.com/account/";
 
     [Serializable]
     class UserDetail
@@ -44,8 +46,7 @@ public class LoginRegisterHandler: MonoBehaviour
         warningMessage.gameObject.SetActive(true);
     }
 
-    [SerializeField]
-    private readonly string URL = "https://cp-api-unej.herokuapp.com/account/";
+    
 
     public void ValidateRegisterButton()
     {
@@ -126,10 +127,36 @@ public class LoginRegisterHandler: MonoBehaviour
 
     private IEnumerator LoginSuccessful(string _username)
     {
-        AccountHandler.Instance.sessionUsername = _username;
+        AccountHandler.Instance.SessionUsername = _username;
         yield return new WaitForSeconds(0.512f);
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("GameMenu");
 
+    }
+
+    public void ToRegisterScene()
+    {
+        SceneManager.LoadScene("TemplateRegister");
+    }
+
+    public void ToLoginScene()
+    {
+        SceneManager.LoadScene("TemplateLogin");
+    }
+
+    public void TogglePassword()
+    {
+        switch (inputPassword.contentType)
+        {
+            case InputField.ContentType.Standard:
+                inputPassword.contentType = InputField.ContentType.Password;
+                break;
+            case InputField.ContentType.Password:
+                inputPassword.contentType = InputField.ContentType.Standard;
+                break;
+            default:
+                inputPassword.contentType = InputField.ContentType.Standard;
+                break;
+        }
     }
 
     [System.Serializable]

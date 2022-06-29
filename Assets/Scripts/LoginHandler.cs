@@ -59,7 +59,7 @@ public class LoginHandler : MonoBehaviour
 
     private IEnumerator LoginSuccessful(string _username)
     {
-        AccountHandler.Instance.sessionUsername = _username;
+        AccountHandler.Instance.SessionUsername = _username;
         yield return new WaitForSeconds(0.512f);
         SceneManager.LoadScene("MainScene");
 
