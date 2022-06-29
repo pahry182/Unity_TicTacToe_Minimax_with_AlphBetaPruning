@@ -5,7 +5,7 @@ using UnityEngine;
 public class AccountHandler : MonoBehaviour
 {
     public static AccountHandler Instance { get; private set; }
-    public string sessionUsername { set; get; }
+    public string SessionUsername { set; get; }
 
     private void Awake()
     {
@@ -18,13 +18,11 @@ public class AccountHandler : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
     }
 
     public void LogOut()
     {
-        sessionUsername = "";
+        SessionUsername = "";
         //back to Login Page
     }
 }

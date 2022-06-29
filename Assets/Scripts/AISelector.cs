@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public enum AIDifficulty { EASY, NORMAL, HARD }
 
 
@@ -33,4 +34,8 @@ public class AISelector : MonoBehaviour
         }
     }
     
+    public void BackToMenuButton()
+    {
+        SceneManager.LoadScene("GameMenu");
+    }
 }
