@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -159,7 +159,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.000023241038}
-  m_SizeDelta: {x: 0, y: 482.7289}
+  m_SizeDelta: {x: 0, y: 572.93}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &97028251
 GameObject:
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1346408475}
   m_Direction: 2
   m_Value: 1
-  m_Size: 1
+  m_Size: 0.9999983
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1214,7 +1214,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12.204, y: 192.808}
+  m_AnchoredPosition: {x: -12.204, y: 235}
   m_SizeDelta: {x: 236.832, y: 40.384}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1277329277
@@ -1564,8 +1564,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -381, y: -46.971}
-  m_SizeDelta: {x: -946.08, y: -367.488}
+  m_AnchoredPosition: {x: -381, y: 122.82}
+  m_SizeDelta: {x: -946.08, y: -707.071}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1427711536
 MonoBehaviour:
@@ -1711,7 +1711,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.914, y: 117}
+  m_AnchoredPosition: {x: -7.9140015, y: 159.192}
   m_SizeDelta: {x: 240.511, y: 45.229}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1532207345
@@ -2505,7 +2505,7 @@ PrefabInstance:
     - target: {fileID: 5430497911664626855, guid: 7d1c63d03fd5632438659f8b49048080,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -295.00003
+      value: -214
       objectReference: {fileID: 0}
     - target: {fileID: 5430497911664626855, guid: 7d1c63d03fd5632438659f8b49048080,
         type: 3}
