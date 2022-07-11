@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 141939896}
   - component: {fileID: 141939895}
   m_Layer: 5
-  m_Name: Login Button
+  m_Name: Sign Up Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cf695c44545524045ae58c5374432172, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72e40b9a8ad907a4cb2d5624db49d96d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: d2f82a6b8a7992a4c93dac1ec76154d9, type: 3}
     m_FontSize: 24
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
@@ -400,7 +400,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Login
+  m_Text: Sign Up
 --- !u!222 &190294407
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1068,7 +1068,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SIGN UP
+  m_Text: LOGIN
 --- !u!222 &612817134
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1323,7 +1323,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1006076150}
   m_Layer: 5
-  m_Name: Register
+  m_Name: Login
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1348,7 +1348,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 40, y: -268}
+  m_AnchoredPosition: {x: 51.9, y: -268}
   m_SizeDelta: {x: 298.4, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1038039208
@@ -1363,7 +1363,7 @@ GameObject:
   - component: {fileID: 1038039211}
   - component: {fileID: 1038039210}
   m_Layer: 5
-  m_Name: Register text
+  m_Name: Login text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1386,7 +1386,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -69.19999, y: 0}
+  m_AnchoredPosition: {x: -54.1, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1038039210
@@ -1422,7 +1422,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Need an account?
+  m_Text: Already a user?
 --- !u!222 &1038039211
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1547,7 +1547,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 69.20001, y: -0.35003662}
+  m_AnchoredPosition: {x: 60.3, y: -0.35003662}
   m_SizeDelta: {x: 160, y: 29.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1198702565
@@ -1673,7 +1673,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Welcome
+  m_Text: Register
 --- !u!222 &1273771453
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1862,7 +1862,7 @@ GameObject:
   - component: {fileID: 1462678202}
   - component: {fileID: 1462678201}
   m_Layer: 5
-  m_Name: Login Panel
+  m_Name: Register Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
