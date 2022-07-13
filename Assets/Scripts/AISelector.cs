@@ -38,4 +38,9 @@ public class AISelector : MonoBehaviour
     {
         SceneManager.LoadScene("GameMenu");
     }
+
+    public void ButtonSFX()
+    {
+        GameManager.Instance.PlaySfx("ButtonSFX");
+    }
 }

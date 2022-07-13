@@ -26,12 +26,18 @@ public class AccoutMenuHandler : MonoBehaviour
     {
         usernameText.text = AccountHandler.Instance.SessionUsername;
         StartCoroutine(TictactoeScoreGet());
+        GameManager.Instance.PlayBgm("MenuBGM");
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void ButtonSFX()
+    {
+        GameManager.Instance.PlaySfx("ButtonSFX");
     }
 
     private IEnumerator TictactoeScoreGet()

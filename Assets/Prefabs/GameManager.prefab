@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8315101829457120858}
   - component: {fileID: 8315101829457120857}
   - component: {fileID: 1025834174588469466}
+  - component: {fileID: 5546179058880357203}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -85,7 +86,13 @@ MonoBehaviour:
       loop: 1
       audioSource: {fileID: 0}
     - name: BGM
-      clip: {fileID: 8300000, guid: 675ef2158860b834cbd6c2b98a892bbc, type: 3}
+      clip: {fileID: 8300000, guid: 911b2e4719c0d53438a46d8014db8e17, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 1
+      audioSource: {fileID: 0}
+    - name: MenuBGM
+      clip: {fileID: 8300000, guid: c19c590e802e6b74ab15e6fe5f317359, type: 3}
       volume: 1
       pitch: 1
       loop: 1
@@ -102,5 +109,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1afd81da2e3a3e449e8a57d1600134b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5546179058880357203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8315101829457120856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60587594e4d8980419d7ce363be21b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

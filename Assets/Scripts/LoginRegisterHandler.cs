@@ -22,6 +22,16 @@ public class LoginRegisterHandler: MonoBehaviour
         public string password;
     }
 
+    private void Start()
+    {
+        GameManager.Instance.PlayBgm("MenuBGM");
+    }
+
+    public void ButtonSFX()
+    {
+        GameManager.Instance.PlaySfx("ButtonSFX");
+    }
+
     public void ValidateLoginButton()
     {
         if (inputUsername.text == string.Empty || inputPassword.text == string.Empty)
@@ -78,6 +88,8 @@ public class LoginRegisterHandler: MonoBehaviour
 
         request.downloadHandler = new DownloadHandlerBuffer();
 
+        WriteWarning("Hold on...");
+
         yield return request.SendWebRequest();
 
         if (request.error != null)
@@ -91,11 +103,15 @@ public class LoginRegisterHandler: MonoBehaviour
             WriteWarning("Register Completed! Hello " + _username);
             StartCoroutine(LoginSuccessful(_username));            
         }
+
+        yield return new WaitForSeconds(0.1f);
     }
 
     public IEnumerator RequestLogin(string _username, string _password)
     {
-        UnityWebRequest request = UnityWebRequest.Get("https://cp-api-unej.herokuapp.com/account/" + _username);
+        UnityWebRequest request = UnityWebRequest.Get(URL + _username);
+
+        WriteWarning("Hold on...");
 
         yield return request.SendWebRequest();
 
@@ -108,7 +124,7 @@ public class LoginRegisterHandler: MonoBehaviour
             print("Response:" + request.downloadHandler.text);
             UserDetail userDetail = JsonUtility.FromJson<UserDetail>(request.downloadHandler.text);
 
-            if (userDetail.username == null)
+            if (string.IsNullOrEmpty(userDetail.username))
             {
                 WriteWarning("Username not found!");
             }
@@ -123,6 +139,8 @@ public class LoginRegisterHandler: MonoBehaviour
                 StartCoroutine(LoginSuccessful(_username));
             }
         }
+
+        yield return new WaitForSeconds(0.1f);
     }
 
     private IEnumerator LoginSuccessful(string _username)
@@ -135,12 +153,12 @@ public class LoginRegisterHandler: MonoBehaviour
 
     public void ToRegisterScene()
     {
-        SceneManager.LoadScene("TemplateRegister");
+        SceneManager.LoadScene("RegisterPage");
     }
 
     public void ToLoginScene()
     {
-        SceneManager.LoadScene("TemplateLogin");
+        SceneManager.LoadScene("LoginPage");
     }
 
     public void TogglePassword()
@@ -157,6 +175,7 @@ public class LoginRegisterHandler: MonoBehaviour
                 inputPassword.contentType = InputField.ContentType.Standard;
                 break;
         }
+        inputPassword.ForceLabelUpdate();
     }
 
     [System.Serializable]

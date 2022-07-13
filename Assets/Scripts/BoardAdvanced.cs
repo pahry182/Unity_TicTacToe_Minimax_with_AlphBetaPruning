@@ -73,8 +73,12 @@ public class BoardAdvanced : MonoBehaviour {
 
     private void WinGame()
     {
+        if (resultPanel.activeSelf) return;
+
         resultPanel.SetActive(true);
-        StartCoroutine(APIScoreHandler.Instance.TictactoeScorePut());
+        
+        if (winner == "Player 1 won") StartCoroutine(APIScoreHandler.Instance.TictactoeScorePut());
+
         resultText.text = winner;
     }
     

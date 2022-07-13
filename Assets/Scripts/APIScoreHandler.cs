@@ -53,7 +53,7 @@ public class APIScoreHandler : MonoBehaviour
     {
         //string _username = "pahry182";
         score.username = AccountHandler.Instance.SessionUsername;
-        UnityWebRequest request = UnityWebRequest.Get("https://cp-api-unej.herokuapp.com/tictactoe/" + score.username);
+        UnityWebRequest request = UnityWebRequest.Get(URL + score.username);
 
         yield return request.SendWebRequest();
 
