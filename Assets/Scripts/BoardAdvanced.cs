@@ -44,32 +44,37 @@ public class BoardAdvanced : MonoBehaviour {
         GameManager.Instance.PlayBgm("BGM");
     }
 
-    void OnGUI()
-	{
-		//if(GUI.Button(new Rect(10, 10, 100, 30), "Restart"))
-		//{
-		//	match.Restart();
-		//	lastInteraction = 0;
-		//	winner = "";
-		//}
-		
-		//if(lastInteraction > 0)
-		//{
-		//	GUI.Label(new Rect(120, 10, 200, 30), lastInteraction + " interactions.");
-		//}
-
-		if(winner != "")
-		{
+    private void Update()
+    {
+        if (winner != "")
+        {
             WinGame();
 
         }
-		//Minimax = GUI.Toggle(new Rect(10, 50, 100, 20), !(MinimaxAB || Negamax || NegamaxAB), " Minimax");
-        //MinimaxAB = GUI.Toggle(new Rect(10, 70, 300, 20), !(Minimax || Negamax || NegamaxAB), " Minimax - Alpha–beta pruning");
+    }
 
-		// Not Implemented Yet
-        //Negamax = GUI.Toggle(new Rect(10, 90, 100, 20), !(MinimaxAB || Minimax || NegamaxAB), " Negamax");
-        //NegamaxAB = GUI.Toggle(new Rect(10, 110, 300, 20), !(MinimaxAB || Negamax || Minimax), " Negamax - Alpha–beta pruning");
-	}
+ //   void OnGUI()
+	//{
+	//	//if(GUI.Button(new Rect(10, 10, 100, 30), "Restart"))
+	//	//{
+	//	//	match.Restart();
+	//	//	lastInteraction = 0;
+	//	//	winner = "";
+	//	//}
+		
+	//	//if(lastInteraction > 0)
+	//	//{
+	//	//	GUI.Label(new Rect(120, 10, 200, 30), lastInteraction + " interactions.");
+	//	//}
+
+		
+	//	//Minimax = GUI.Toggle(new Rect(10, 50, 100, 20), !(MinimaxAB || Negamax || NegamaxAB), " Minimax");
+ //       //MinimaxAB = GUI.Toggle(new Rect(10, 70, 300, 20), !(Minimax || Negamax || NegamaxAB), " Minimax - Alpha–beta pruning");
+
+	//	// Not Implemented Yet
+ //       //Negamax = GUI.Toggle(new Rect(10, 90, 100, 20), !(MinimaxAB || Minimax || NegamaxAB), " Negamax");
+ //       //NegamaxAB = GUI.Toggle(new Rect(10, 110, 300, 20), !(MinimaxAB || Negamax || Minimax), " Negamax - Alpha–beta pruning");
+	//}
 
     private void WinGame()
     {

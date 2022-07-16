@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        FirstInit();
+        SetupAudio();
         if (Instance == null)
         {
             Instance = this;
@@ -21,14 +23,10 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
     }
 
     void Start()
     {
-        FirstInit();
-        SetupAudio();
 
     }
 

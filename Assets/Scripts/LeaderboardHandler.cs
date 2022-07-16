@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +16,14 @@ public class LeaderboardHandler : MonoBehaviour
     public Text leaderboardTitle;
     public LeaderboardEntryTTTScore currentSessionEntry;
 
-    [HideInInspector] public List<UserScore> userScoresData;
+    //[HideInInspector] public List<UserScore> userScoreDB;
+    public UserScoreList userScoreDB;
+
+    [System.Serializable]
+    public class UserScoreList
+    {
+        public List<UserScore> userScoreJSONList;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +49,8 @@ public class LeaderboardHandler : MonoBehaviour
         }
         else
         {
-            userScoresData = JsonConvert.DeserializeObject<List<UserScore>>(request.downloadHandler.text);
+            string json = "{ \"userScoreJSONList\" : " + request.downloadHandler.text + "}";
+            userScoreDB = JsonUtility.FromJson<UserScoreList>(json);
         }
     }
 
@@ -67,7 +74,7 @@ public class LeaderboardHandler : MonoBehaviour
         leaderboardWindow.SetActive(true);
         List<LeaderboardEntryTTTScore> entryList = new();
 
-        for (int i = 0; i < userScoresData.Count; i++)
+        for (int i = 0; i < userScoreDB.userScoreJSONList.Count; i++)
         {
             entryList.Add(Instantiate(entryPrefab, entryParent).GetComponent<LeaderboardEntryTTTScore>());
         }
@@ -80,34 +87,53 @@ public class LeaderboardHandler : MonoBehaviour
         leaderboardTitle.text = "Leaderboard Tictactoe " + difficulty;
         currentSessionEntry.username.text = AccountHandler.Instance.SessionUsername;
 
-        switch (difficulty)
+        bool isFound = false;
+        foreach (var item in userScoreDB.userScoreJSONList)
         {
-            case Difficulty.Easy:
-                currentSessionEntry.score.text = userScoresData.Find((x) => x.username == AccountHandler.Instance.SessionUsername).tictactoe_score_easy.ToString();
+            if (item.username == AccountHandler.Instance.SessionUsername)
+            {
+                isFound = true;
                 break;
-            case Difficulty.Normal:
-                currentSessionEntry.score.text = userScoresData.Find((x) => x.username == AccountHandler.Instance.SessionUsername).tictactoe_score_normal.ToString();
-                break;
-            case Difficulty.Hard:
-                currentSessionEntry.score.text = userScoresData.Find((x) => x.username == AccountHandler.Instance.SessionUsername).tictactoe_score_hard.ToString();
-                break;
-            default:
-                break;
+            }
         }
 
-        for (int i = 0; i < userScoresData.Count; i++)
+        if (isFound)
         {
-            entryList[i].username.text = i+1 + ". " + userScoresData[i].username;
             switch (difficulty)
             {
                 case Difficulty.Easy:
-                    entryList[i].score.text = userScoresData[i].tictactoe_score_easy.ToString();
+                    currentSessionEntry.score.text = userScoreDB.userScoreJSONList.Find((x) => x.username == AccountHandler.Instance.SessionUsername).tictactoe_score_easy.ToString();
                     break;
                 case Difficulty.Normal:
-                    entryList[i].score.text = userScoresData[i].tictactoe_score_normal.ToString();
+                    currentSessionEntry.score.text = userScoreDB.userScoreJSONList.Find((x) => x.username == AccountHandler.Instance.SessionUsername).tictactoe_score_normal.ToString();
                     break;
                 case Difficulty.Hard:
-                    entryList[i].score.text = userScoresData[i].tictactoe_score_hard.ToString();
+                    currentSessionEntry.score.text = userScoreDB.userScoreJSONList.Find((x) => x.username == AccountHandler.Instance.SessionUsername).tictactoe_score_hard.ToString();
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            currentSessionEntry.score.text = "0";
+        }
+
+        
+
+        for (int i = 0; i < userScoreDB.userScoreJSONList.Count; i++)
+        {
+            entryList[i].username.text = i + 1 + ". " + userScoreDB.userScoreJSONList[i].username;
+            switch (difficulty)
+            {
+                case Difficulty.Easy:
+                    entryList[i].score.text = userScoreDB.userScoreJSONList[i].tictactoe_score_easy.ToString();
+                    break;
+                case Difficulty.Normal:
+                    entryList[i].score.text = userScoreDB.userScoreJSONList[i].tictactoe_score_normal.ToString();
+                    break;
+                case Difficulty.Hard:
+                    entryList[i].score.text = userScoreDB.userScoreJSONList[i].tictactoe_score_hard.ToString();
                     break;
                 default:
                     break;
@@ -118,21 +144,21 @@ public class LeaderboardHandler : MonoBehaviour
     public void LeaderboardEasyButton()
     {
         List<LeaderboardEntryTTTScore> entryList = SetupEntry();
-        userScoresData.Sort(SortByScoreEasy);
+        userScoreDB.userScoreJSONList.Sort(SortByScoreEasy);
         DataEntry(Difficulty.Easy, entryList);
     }
 
     public void LeaderboardNormalButton()
     {
         List<LeaderboardEntryTTTScore> entryList = SetupEntry();
-        userScoresData.Sort(SortByScoreNormal);
+        userScoreDB.userScoreJSONList.Sort(SortByScoreNormal);
         DataEntry(Difficulty.Normal, entryList);
     }
 
     public void LeaderboardHardButton()
     {
         List<LeaderboardEntryTTTScore> entryList = SetupEntry();
-        userScoresData.Sort(SortByScoreHard);
+        userScoreDB.userScoreJSONList.Sort(SortByScoreHard);
         DataEntry(Difficulty.Hard, entryList);
     }
 

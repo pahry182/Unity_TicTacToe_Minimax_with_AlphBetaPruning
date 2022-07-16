@@ -63,25 +63,38 @@ public class APIScoreHandler : MonoBehaviour
         }
         else
         {
-            UserScore score = JsonUtility.FromJson<UserScore>(request.downloadHandler.text);
+            UserScore _score = JsonUtility.FromJson<UserScore>(request.downloadHandler.text);
+
+            if (string.IsNullOrEmpty(_score.username))
+            {
+                string data1 = JsonUtility.ToJson(score);
+                request = new UnityWebRequest(URL + score.username, UnityWebRequest.kHttpVerbPUT);
+                request.SetRequestHeader("Content-Type", "application/json");
+                request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(data1));
+                request.downloadHandler = new DownloadHandlerBuffer();
+
+                yield return request.SendWebRequest();
+
+                _score = JsonUtility.FromJson<UserScore>(request.downloadHandler.text);
+            }
 
             switch (BoardAdvanced.difficulty)
             {
                 case AIDifficulty.EASY:
-                    score.tictactoe_score_easy++;
+                    _score.tictactoe_score_easy++;
                     break;
                 case AIDifficulty.NORMAL:
-                    score.tictactoe_score_normal++;
+                    _score.tictactoe_score_normal++;
                     break;
                 case AIDifficulty.HARD:
-                    score.tictactoe_score_hard++;
+                    _score.tictactoe_score_hard++;
                     break;
                 default:
                     break;
             }
 
-            string data = JsonUtility.ToJson(score);
-            request = new UnityWebRequest(URL + score.username, UnityWebRequest.kHttpVerbPUT);
+            string data = JsonUtility.ToJson(_score);
+            request = new UnityWebRequest(URL + _score.username, UnityWebRequest.kHttpVerbPUT);
             request.SetRequestHeader("Content-Type", "application/json");
             request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(data));
             request.downloadHandler = new DownloadHandlerBuffer();
@@ -92,10 +105,6 @@ public class APIScoreHandler : MonoBehaviour
             {
                 Debug.Log(request.error);
                 Debug.Log(request.downloadHandler.text);
-            }
-            else
-            {
-                print(request.downloadHandler.text);
             }
         }
     }
