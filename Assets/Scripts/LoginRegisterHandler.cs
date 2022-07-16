@@ -121,7 +121,6 @@ public class LoginRegisterHandler: MonoBehaviour
         }
         else
         {
-            print("Response:" + request.downloadHandler.text);
             UserDetail userDetail = JsonUtility.FromJson<UserDetail>(request.downloadHandler.text);
 
             if (string.IsNullOrEmpty(userDetail.username))

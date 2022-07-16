@@ -4,20 +4,20 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 
+[System.Serializable]
+public class UserScore
+{
+    public string username = "";
+    public int tictactoe_score_easy = 0;
+    public int tictactoe_score_normal = 0;
+    public int tictactoe_score_hard = 0;
+}
+
 public class APIScoreHandler : MonoBehaviour
 {
     public static APIScoreHandler Instance { get; private set; }
     private const string URL = "https://cp-api-unej.herokuapp.com/tictactoe/";
-    private UserScore score = new();
-
-    [System.Serializable]
-    public class UserScore
-    {
-        public string username = "";
-        public int tictactoe_score_easy = 0;
-        public int tictactoe_score_normal = 0;
-        public int tictactoe_score_hard = 0;
-    }
+    private UserScore score = new();    
 
     private void Awake()
     {
