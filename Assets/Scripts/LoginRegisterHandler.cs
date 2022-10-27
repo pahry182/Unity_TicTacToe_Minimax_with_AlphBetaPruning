@@ -77,7 +77,7 @@ public class LoginRegisterHandler: MonoBehaviour
 
     private IEnumerator RequestRegister(string _username, string _password)
     {
-        Profiles profile = new();
+        Profiles profile = new Profiles();
         profile.username = _username;
         profile.password = _password;
         string data = JsonUtility.ToJson(profile);

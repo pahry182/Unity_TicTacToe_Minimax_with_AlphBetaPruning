@@ -10,7 +10,7 @@ public class AccoutMenuHandler : MonoBehaviour
     public Text tictactoe_score_easyText;
     public Text tictactoe_score_normalText;
     public Text tictactoe_score_hardText;
-    private UserScore score = new();
+    private UserScore score = new UserScore();
 
     [System.Serializable]
     public class UserScore

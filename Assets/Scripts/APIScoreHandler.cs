@@ -17,7 +17,7 @@ public class APIScoreHandler : MonoBehaviour
 {
     public static APIScoreHandler Instance { get; private set; }
     private const string URL = "https://cp-api-unej.herokuapp.com/tictactoe/";
-    private UserScore score = new();    
+    private UserScore score = new UserScore();    
 
     private void Awake()
     {

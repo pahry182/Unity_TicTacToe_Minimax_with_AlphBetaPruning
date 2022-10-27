@@ -49,7 +49,9 @@ public class LeaderboardHandler : MonoBehaviour
         }
         else
         {
+            print(request.downloadHandler.text);
             string json = "{ \"userScoreJSONList\" : " + request.downloadHandler.text + "}";
+            print(json);
             userScoreDB = JsonUtility.FromJson<UserScoreList>(json);
         }
     }
@@ -72,7 +74,7 @@ public class LeaderboardHandler : MonoBehaviour
     private List<LeaderboardEntryTTTScore> SetupEntry()
     {
         leaderboardWindow.SetActive(true);
-        List<LeaderboardEntryTTTScore> entryList = new();
+        List<LeaderboardEntryTTTScore> entryList = new List<LeaderboardEntryTTTScore>();
 
         for (int i = 0; i < userScoreDB.userScoreJSONList.Count; i++)
         {

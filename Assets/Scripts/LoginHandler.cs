@@ -22,7 +22,7 @@ public class LoginHandler : MonoBehaviour
 
     public IEnumerator RequestLogin(string _username, string _password)
     {
-        WWWForm form = new();
+        WWWForm form = new WWWForm();
 
         form.AddField("username", _username);
         form.AddField("password", _password);
